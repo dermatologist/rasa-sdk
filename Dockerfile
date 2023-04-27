@@ -61,6 +61,7 @@ RUN find . -name '*.whl' -maxdepth 1 -exec basename {} \; | awk -F - '{ gsub("_"
   && . /opt/venv/bin/activate \
   && pip install --no-cache-dir -U pip \
   && pip install --no-cache-dir --no-index --find-links=/wheels -r /wheels/requirements.txt \
+  && pip install farm-haystack -f https://download.pytorch.org/whl/cpu/torch-1.13.0%2Bcpu-cp310-cp310-linux_x86_64.whl \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && rm -rf /wheels \
   && rm -rf /root/.cache/pip/*

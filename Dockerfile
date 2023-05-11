@@ -1,28 +1,10 @@
-FROM ubuntu:22.10 as base
+FROM python:3.10-alpine as base
 
 # hadolint ignore=DL3005,DL3008
-RUN apt-get update -qq \
-    # Make sure that all security updates are installed
-    && apt-get dist-upgrade -y --no-install-recommends \
-    && apt-get install -y --no-install-recommends \
-      python3 \
-      python3-venv \
-      python3-pip \
-      python3-dev \
-    && apt-get autoremove -y \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 100 \
-   && update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 100
+RUN apk upgrade --no-cache && \
+    apk add --no-cache bash curl gcc make musl-dev
 
 FROM base as python_builder
-
-# hadolint ignore=DL3008
-RUN apt-get update -qq \
-   && apt-get install -y --no-install-recommends \
-    curl \
-    && apt-get autoremove -y
 
 # install poetry
 # keep this in sync with the version in pyproject.toml and Dockerfile

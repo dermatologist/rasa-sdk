@@ -2,7 +2,7 @@ FROM python:3.10-alpine as base
 
 # hadolint ignore=DL3005,DL3008
 RUN apk upgrade --no-cache && \
-    apk add --no-cache bash libgcc libstdc++ libgfortran openblas
+    apk add --no-cache bash libstdc++ openblas
 
 FROM base as python_builder
 

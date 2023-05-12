@@ -1,8 +1,8 @@
 FROM python:3.10-alpine as base
 
 # hadolint ignore=DL3005,DL3008
-RUN apk upgrade --no-cache && \
-    apk add --no-cache bash libstdc++ openblas
+RUN apk upgrade --no-cache \
+    && apk add --no-cache bash libstdc++ openblas
 
 FROM base as python_builder
 
@@ -21,11 +21,11 @@ COPY . /app/
 WORKDIR /app
 
 # hadolint ignore=SC1091,DL3013
-RUN python -m venv /opt/venv && \
-  . /opt/venv/bin/activate && \
-  pip install --no-cache-dir -U pip && \
-  pip install --no-cache-dir wheel && \
-  poetry install --only main --no-root --no-interaction
+RUN python -m venv /opt/venv \
+  && . /opt/venv/bin/activate \
+  && pip install --no-cache-dir -U pip \
+  && pip install --no-cache-dir wheel \
+  && poetry install --only main --no-root --no-interaction
 
 # install dependencies and build wheels
 # hadolint ignore=SC1091,DL3013
@@ -60,7 +60,8 @@ COPY --from=python_builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
 # update permissions & change user
-RUN chgrp -R 0 /app && chmod -R g=u /app
+RUN chgrp -R 0 /app \
+    && chmod -R g=u /app
 USER 1001
 
 # change shell

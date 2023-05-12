@@ -6,7 +6,7 @@ RUN apk upgrade --no-cache && \
 
 FROM base as python_builder
 
-RUN apk add --no-cache curl gcc g++ gfortran pkgconfig cmake make musl-dev openblas-dev
+RUN apk add --no-cache curl g++ cmake make musl-dev openblas-dev
 
 # install poetry
 # keep this in sync with the version in pyproject.toml and Dockerfile

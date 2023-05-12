@@ -80,7 +80,7 @@ RUN chgrp -R 0 /app && chmod -R g=u /app
 USER 1001
 
 # change shell
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+# SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # create a mount point for custom actions and the entry point
 WORKDIR /app

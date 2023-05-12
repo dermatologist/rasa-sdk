@@ -67,7 +67,7 @@ RUN find . -name '*.whl' -maxdepth 1 -exec basename {} \; | awk -F - '{ gsub("_"
   && rm -rf /root/.cache/pip/*
 
 # final image
-FROM base
+FROM alpine:latest
 
 # copy needed files
 COPY ./entrypoint.sh /app/

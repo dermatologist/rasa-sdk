@@ -2,9 +2,11 @@ FROM python:3.10-alpine as base
 
 # hadolint ignore=DL3005,DL3008
 RUN apk upgrade --no-cache && \
-    apk add --no-cache bash curl gcc g++ gfortran pkgconfig cmake make musl-dev
+    apk add --no-cache bash
 
 FROM base as python_builder
+
+RUN apk add --no-cache curl gcc g++ gfortran pkgconfig cmake make musl-dev
 
 # install poetry
 # keep this in sync with the version in pyproject.toml and Dockerfile

@@ -29,7 +29,8 @@ RUN python -m venv /opt/venv \
 
 # install dependencies and build wheels
 # hadolint ignore=SC1091,DL3013
-RUN . /opt/venv/bin/activate && poetry build -f wheel -n \
+RUN . /opt/venv/bin/activate \
+  && poetry build -f wheel -n \
   && pip install --no-cache-dir --no-deps dist/*.whl \
   && mkdir /wheels \
   && poetry export -f requirements.txt --without-hashes --output /wheels/requirements.txt \

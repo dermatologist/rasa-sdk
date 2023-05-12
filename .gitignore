@@ -113,6 +113,10 @@ examples/moodbot/models/
 *~
 .dir-locals.el
 
+# IDEA IDEs (IntelliJ)
+*.iml
+.idea/
+
 *.DS_Store
 tests/executor_test_packages
 .pytype/

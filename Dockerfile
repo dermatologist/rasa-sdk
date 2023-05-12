@@ -2,7 +2,7 @@ FROM python:3.10-alpine as base
 
 # hadolint ignore=DL3005,DL3008
 RUN apk upgrade --no-cache && \
-    apk add --no-cache bash curl gcc g++ make musl-dev
+    apk add --no-cache bash curl gcc g++ gfortran make musl-dev
 
 FROM base as python_builder
 
